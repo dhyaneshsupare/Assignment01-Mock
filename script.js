@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cityName = document.getElementById("city-name")
     const temprature = document.getElementById("temprature")
     const description = document.getElementById("description")
+    const windSpeed = document.getElementById("speed")
+    const humidity = document.getElementById("humidity")
     
     //API KEY
     const API_KEY = "e9319a43e6e2bfafb2facadf5868729f";
@@ -16,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //making searchBtn functional.
     searchBtn.addEventListener('click', async() => {
         //taking city input from user
-        const city = cityInput.value
+        const city = cityInput.value.trim()
         if(!city) return;  //alert("City not found!!!!!!!"); //If the city name didn't match the dataset or wrong spelling is typed.
 
         //showing API data. Using try-catch because it can throw some errors(maybe).
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("RESPONSE", response)
 
         if(!response.ok){
-            throw new error("City not found!!!!!!") //Throwing this error here instead of at in input field.
+            throw new Error("City not found!!!!!!") //Throwing this error here instead of at in input field.
         }
         
         const data = await response.json()
@@ -50,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
     //We fetched the response from API, now we have to display it on UI(browser).
     function displayData(weatherData) {
         console.log(weatherData)
-        const {name, main, weather, windSpeed, humidity} = weatherData
+        const { name, main, weather, wind } = weatherData;
         cityName.textContent = name
         temprature.textContent = `Temprature: ${main.temp}`
         description.textContent = `Conditions: ${weather[0].description}`
-        humidity.textContent = `Humidity: ${main.humidity}`
-        windSpeed.textContent = `Wind-Speed: ${wind.speed}`
+        humidity.textContent = `Humidity: ${main.humidity}`;
+        windSpeed.textContent = `Wind-Speed: ${wind.speed}`;
     }
 
     // function showError() {
-    //     //Du=isplaying all errors.
+    //     //Displaying all errors.
     // }
 })
