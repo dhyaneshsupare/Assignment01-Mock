@@ -15,9 +15,15 @@
                 <button id="get-weather-btn">Search</button>
         </div>
         <div class="temp-btn-container">
-            <button class="temp-btn">°C</button>
-            <button class="temp-btn">°F</button>
+            <button id="celsius-btn" class="temp-btn active-unit">°C</button>
+            <button id="fahrenheit-btn" class="temp-btn">°F</button>
         </div>
+        
+        <!-- Loding Spinner -->
+        <div id="loading-spinner" class="spinner hidden"></div>
+
+        <!-- Error Message -->
+        <p id="error-message" class="hidden">City not found or API request failed. Please try again.</p>
 
         <!-- Fetched Data Container -->
         <div id="weather-info">
@@ -27,6 +33,9 @@
             <p id="speed"></p>
             <p id="humidity"></p>
 
+            <!-- 3-Day Forecasting -->
+            <h3 class="forecast-heading">3-Day Forecast</h3>
+            <div id="forecast-container" class="forecast-container"></div>
         </div>
     </div>
 
